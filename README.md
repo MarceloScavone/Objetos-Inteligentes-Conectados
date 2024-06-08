@@ -10,6 +10,10 @@ Essa sessão do projeto demonstra como configurar um ESP32 para monitorar a temp
 - Sensor de Temperatura DS18B20
 - Resistor de 4.7kΩ
 
+### Montagem do Hardware
+
+![Desenho Esquemático](imagens/esquematico.jpeg)
+
 ### Software
 
 - Arduino IDE
@@ -67,6 +71,7 @@ O WiFiManager é utilizado para configurar a conexão WiFi e parâmetros MQTT (b
 
 **Agora é só verificar se as informações estão chegando no tópico com a próxima parte do projeto!**
 
+OBS: Caso precise reiniciar a placa em modo AP basta sair da região do wifi e ligá-la ou colocar um objeto metálico entre o pino 19 e GND por 3 segundos.
 ___
 
 # Telegram Bot com Node-RED e InfluxDB
@@ -163,3 +168,38 @@ O bot enviará notificações automáticas para os usuários cadastrados com bas
 **Condições:**
 - Se a temperatura estiver acima de 37.5°C, o bot enviará a mensagem: "Atenção! A temperatura está elevada: [valor]"
 - Se a temperatura estiver abaixo de 35.5°C, o bot enviará a mensagem: "Atenção! A temperatura está baixa: [valor]"
+
+___
+
+# Configurando o Grafana
+
+1. **Adicionar a Fonte de Dados do InfluxDB:**
+   - Faça login no Grafana e vá para **Configuration** > **Data Sources**.
+   - Clique em **Add data source** e selecione **InfluxDB**.
+   - Configure a fonte de dados com as seguintes informações:
+     - **URL:** `https://us-west-2-1.aws.cloud2.influxdata.com` (ou outra URL do seu InfluxDB Cloud)
+     - **Organization:** Seu nome de organização no InfluxDB Cloud
+     - **Token:** Crie um token para o grafana assim como fez como o nodered e cole aqui
+     - **Default Bucket:** O nome do bucket que você criou
+
+2. **Criar um Novo Painel:**
+   - No Grafana, vá para o dashboard onde deseja adicionar a tabela.
+   - Clique em **Add panel** e selecione **Table**.
+
+3. **Configurar a Consulta Flux:**
+   - No editor de consultas, selecione **Flux** como o tipo de consulta.
+   - Insira a consulta Flux para buscar os dados desejados. Exemplo de consulta:
+     ```flux
+     from(bucket: "nome_do_seu_bucket")
+       |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
+       |> filter(fn: (r) =>
+        r._measurement == "nome_da_sua_medida" and
+        r._field == "nome_do_seu_campo"
+       )
+     ```
+
+4. **Outras configurações:**
+   - Ajuste formatação do gráfico e nome do dashboard conforme necessário.
+
+5. **Salvando e abrindo quando necessário**
+   -  Após todos ajustes basta você clicar em salvar. E após isso basta entrar dentro dos seus dashboards do Grafana e seu dashboard estará lá para uso.
