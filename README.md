@@ -121,7 +121,7 @@ node-red
 3. Substitua no nó mqtt in o your/topic com o tópico MQTT onde as temperaturas serão publicadas.
 
 ## Regra de negócio das Mensagens de Temperatura
-O fluxo MQTT receberá a temperatura corporal e a função `Processar a temperatura` verificará se a temperatura está acima de 37.5 ou abaixo de 35.5, enviando notificações para os chat IDs registrados pelo comando `/cadastrar` no bot. Caso queira altera a regra, modifique esse nó.
+O fluxo MQTT receberá a temperatura corporal e a função `Processar a temperatura` verificará se a temperatura está acima de 37.5 ou abaixo de 35.5, enviando notificações para os chat IDs registrados pelo comando `/cadastrar` no bot.
 
 ## Usando os Comandos do Bot do Telegram
 
