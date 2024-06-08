@@ -50,7 +50,7 @@ Essa sessão do projeto demonstra como configurar um ESP32 para monitorar a temp
      - `ArduinoJson` (autor: Benoit Blanchon)
 
 4. **Carregar o Código**:
-   - O código fonte completo para o ESP32 está disponível na pasta `esp32/esp32ds20b18` deste repositório.
+   - O código fonte completo para o ESP32 está disponível na pasta `esp32/DS18B20MQTT` deste repositório.
    - Abra o Arduino IDE e carregue o código fonte (`esp32/esp32ds20b18`).
    - Conecte o ESP32 ao computador via cabo USB.
    - Vá em `Ferramentas` > `Placa` e selecione a placa ESP32 que você está usando (por exemplo, `ESP32 Dev Module`).
