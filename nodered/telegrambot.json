@@ -1,0 +1,633 @@
+[
+    {
+        "id": "e45d23423da631af",
+        "type": "tab",
+        "label": "Fluxo de Temperatura",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e869be43cd479bf4",
+        "type": "telegram command",
+        "z": "e45d23423da631af",
+        "name": "",
+        "command": "/cadastrar",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "bot": "963fc2bda1c6056c",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 100,
+        "y": 180,
+        "wires": [
+            [
+                "56e82e5d9b4d2034"
+            ]
+        ]
+    },
+    {
+        "id": "56e82e5d9b4d2034",
+        "type": "function",
+        "z": "e45d23423da631af",
+        "name": "Salva chatId",
+        "func": "var chatId = msg.payload.chatId;\nvar cadastrados = flow.get('cadastrados') || [];\nif (cadastrados.indexOf(chatId) === -1) {\n    cadastrados.push(chatId);\n    flow.set('cadastrados', cadastrados);\n    msg.payload = { chatId: chatId, type: 'message', content: 'Você foi cadastrado com sucesso!' };\n    var saveMsg = { payload: JSON.stringify(cadastrados, null, 2) };\n    node.send([saveMsg, msg]);\n} else {\n    msg.payload = { chatId: chatId, type: 'message', content: 'Você já está cadastrado!' };\n    node.send([null, msg]);\n}",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "2ecb5ca45a8068fd"
+            ],
+            [
+                "6e371c323bd487b0"
+            ]
+        ]
+    },
+    {
+        "id": "108974dce1193d8b",
+        "type": "telegram command",
+        "z": "e45d23423da631af",
+        "name": "",
+        "command": "/descadastrar",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "bot": "963fc2bda1c6056c",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "d8a9451b7a5bb594"
+            ]
+        ]
+    },
+    {
+        "id": "d8a9451b7a5bb594",
+        "type": "function",
+        "z": "e45d23423da631af",
+        "name": "Remove chatId",
+        "func": "var chatId = msg.payload.chatId;\nvar cadastrados = flow.get('cadastrados') || [];\nvar index = cadastrados.indexOf(chatId);\nif (index !== -1) {\n    cadastrados.splice(index, 1);\n    flow.set('cadastrados', cadastrados);\n    msg.payload = { chatId: chatId, type: 'message', content: 'Você foi descadastrado com sucesso!' };\n    var saveMsg = { payload: JSON.stringify(cadastrados, null, 2) };\n    node.send([saveMsg, msg]);\n} else {\n    msg.payload = { chatId: chatId, type: 'message', content: 'Você não estava cadastrado.' };\n    node.send([null, msg]);\n}",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 260,
+        "wires": [
+            [
+                "2ecb5ca45a8068fd"
+            ],
+            [
+                "6e371c323bd487b0"
+            ]
+        ]
+    },
+    {
+        "id": "6e371c323bd487b0",
+        "type": "telegram sender",
+        "z": "e45d23423da631af",
+        "name": "",
+        "bot": "963fc2bda1c6056c",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1030,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2046f49e4c93a9bc",
+        "type": "inject",
+        "z": "e45d23423da631af",
+        "name": "Mensagem teste para o Telegram",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 760,
+        "wires": [
+            [
+                "d7e133b2b18bc182"
+            ]
+        ]
+    },
+    {
+        "id": "47b47c59df20baaa",
+        "type": "split",
+        "z": "e45d23423da631af",
+        "name": "",
+        "splt": "",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 690,
+        "y": 760,
+        "wires": [
+            [
+                "2b08a4b61193cd71"
+            ]
+        ]
+    },
+    {
+        "id": "2b08a4b61193cd71",
+        "type": "template",
+        "z": "e45d23423da631af",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"chatId\": \"{{payload}}\", \"type\": \"message\", \"content\": \"Mensagem de teste\"}",
+        "output": "json",
+        "x": 840,
+        "y": 760,
+        "wires": [
+            [
+                "07f44e754c86dd68"
+            ]
+        ]
+    },
+    {
+        "id": "2ecb5ca45a8068fd",
+        "type": "file",
+        "z": "e45d23423da631af",
+        "name": "Sobreescreve o arquivo de chatIds",
+        "filename": "C:/nodered/chatids.json",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 980,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5cec1868999f65ad",
+        "type": "function",
+        "z": "e45d23423da631af",
+        "name": "Adiciona chatIds para o fluxo",
+        "func": "var cadastrados;\ntry {\n    cadastrados = JSON.parse(msg.payload);\n} catch (e) {\n    cadastrados = [];\n}\nflow.set('cadastrados', cadastrados);\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c973035197cbfb6",
+        "type": "file in",
+        "z": "e45d23423da631af",
+        "name": "Carrega chatIds do arquivo",
+        "filename": "C:/nodered/chatids.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 500,
+        "y": 40,
+        "wires": [
+            [
+                "5cec1868999f65ad",
+                "225394576797bd8e"
+            ]
+        ]
+    },
+    {
+        "id": "b7f83ce1b87ab266",
+        "type": "inject",
+        "z": "e45d23423da631af",
+        "name": "Injeta automaticamente ao inciar",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.01",
+        "topic": "",
+        "x": 200,
+        "y": 40,
+        "wires": [
+            [
+                "4c973035197cbfb6"
+            ]
+        ]
+    },
+    {
+        "id": "6b7b229192b8dcc7",
+        "type": "debug",
+        "z": "e45d23423da631af",
+        "name": "Debug de chatIds carregados",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 770,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "225394576797bd8e",
+        "type": "debug",
+        "z": "e45d23423da631af",
+        "name": "Debug de chatIds carregados",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 830,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d7e133b2b18bc182",
+        "type": "function",
+        "z": "e45d23423da631af",
+        "name": "Recupera os chatIds",
+        "func": "msg.payload = flow.get('cadastrados') || [];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 760,
+        "wires": [
+            [
+                "47b47c59df20baaa",
+                "6b7b229192b8dcc7"
+            ]
+        ]
+    },
+    {
+        "id": "c071172d9491fbef",
+        "type": "mqtt in",
+        "z": "e45d23423da631af",
+        "name": "",
+        "topic": "your/topic",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "7f13a246a92794bf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 480,
+        "wires": [
+            [
+                "08b2b1b3ac66c924",
+                "c15948de8433ecba",
+                "ba0376ee0597032d"
+            ]
+        ]
+    },
+    {
+        "id": "01058d77425ae950",
+        "type": "mqtt out",
+        "z": "e45d23423da631af",
+        "name": "",
+        "topic": "your/topic",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7f13a246a92794bf",
+        "x": 470,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "daaae148efd349a8",
+        "type": "inject",
+        "z": "e45d23423da631af",
+        "name": "Teste temperatura normal",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "36.5",
+        "payloadType": "num",
+        "x": 170,
+        "y": 980,
+        "wires": [
+            [
+                "01058d77425ae950"
+            ]
+        ]
+    },
+    {
+        "id": "b49e8ae210675eff",
+        "type": "inject",
+        "z": "e45d23423da631af",
+        "name": "Teste temperatura baixa",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "35.5",
+        "payloadType": "num",
+        "x": 160,
+        "y": 1060,
+        "wires": [
+            [
+                "01058d77425ae950"
+            ]
+        ]
+    },
+    {
+        "id": "08b2b1b3ac66c924",
+        "type": "debug",
+        "z": "e45d23423da631af",
+        "name": "Debug de temperatura recebida",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 510,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "c15948de8433ecba",
+        "type": "function",
+        "z": "e45d23423da631af",
+        "name": "Processar a temperatura (Regra de negócio)",
+        "func": "var temperatura = parseFloat(msg.payload);\nflow.set('ultimaTemperatura', temperatura);\nvar msgList = [];\nvar cadastrados = flow.get('cadastrados') || [];\n\nif (temperatura >= 37.5) {\n    cadastrados.forEach(function(chatId) {\n        msgList.push({ payload: { chatId: chatId, type: 'message', content: 'Atenção! A temperatura está elevada: ' + temperatura + '°C' } });\n    });\n} else if (temperatura <= 35.5) {\n    cadastrados.forEach(function(chatId) {\n        msgList.push({ payload: { chatId: chatId, type: 'message', content: 'Atenção! A temperatura está baixa: ' + temperatura + '°C' } });\n    });\n}\nreturn [msgList];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 420,
+        "wires": [
+            [
+                "6e371c323bd487b0"
+            ]
+        ]
+    },
+    {
+        "id": "6fe26aa4f3122b01",
+        "type": "inject",
+        "z": "e45d23423da631af",
+        "name": "Teste temperatura alta",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "37.5",
+        "payloadType": "num",
+        "x": 160,
+        "y": 900,
+        "wires": [
+            [
+                "01058d77425ae950"
+            ]
+        ]
+    },
+    {
+        "id": "b379a1bc78b0d43d",
+        "type": "comment",
+        "z": "e45d23423da631af",
+        "name": "============================================================ Testes ============================================================",
+        "info": "",
+        "x": 580,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "ccd4e71e787b5865",
+        "type": "telegram command",
+        "z": "e45d23423da631af",
+        "name": "",
+        "command": "/temperatura",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "scope": "default",
+        "bot": "963fc2bda1c6056c",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 110,
+        "y": 340,
+        "wires": [
+            [
+                "8dd017410357a902"
+            ]
+        ]
+    },
+    {
+        "id": "8dd017410357a902",
+        "type": "function",
+        "z": "e45d23423da631af",
+        "name": "Retorna a última temperatura lida",
+        "func": "var chatId = msg.payload.chatId;\nvar cadastrados = flow.get('cadastrados') || [];\nif (cadastrados.indexOf(chatId) === -1) {\n    msg.payload = { chatId: chatId, type: 'message', content: 'Você não está cadastrado!' };\n} else {\n    var temperatura = flow.get('ultimaTemperatura') || '';\n    msg.payload = { chatId: chatId, type: 'message', content: ((temperatura != '') ? 'A última temperatura lida foi de: ' + temperatura + '°C' : 'Ainda não há registro de última temperatura lida') };\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 340,
+        "wires": [
+            [
+                "6e371c323bd487b0"
+            ]
+        ]
+    },
+    {
+        "id": "ba0376ee0597032d",
+        "type": "function",
+        "z": "e45d23423da631af",
+        "name": "Preparar para o Banco de Dados",
+        "func": "var temperatura = parseFloat(msg.payload);\nmsg.payload = {\n    temperatura: temperatura,\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "7f1430af85561c9f"
+            ]
+        ]
+    },
+    {
+        "id": "7f1430af85561c9f",
+        "type": "influxdb out",
+        "z": "e45d23423da631af",
+        "influxdb": "d45a9d77.e4f3f8",
+        "name": "",
+        "measurement": "temperaturas",
+        "precision": "ns",
+        "retentionPolicy": "",
+        "database": "",
+        "precisionV18FluxV20": "ns",
+        "retentionPolicyV18Flux": "",
+        "org": "your-org",
+        "bucket": "your-bucket",
+        "x": 980,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "07f44e754c86dd68",
+        "type": "telegram sender",
+        "z": "e45d23423da631af",
+        "name": "",
+        "bot": "963fc2bda1c6056c",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1030,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "963fc2bda1c6056c",
+        "type": "telegram bot",
+        "botname": "your-bot-name",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "7f13a246a92794bf",
+        "type": "mqtt-broker",
+        "name": "hivemq",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d45a9d77.e4f3f8",
+        "type": "influxdb",
+        "hostname": "",
+        "port": "443",
+        "protocol": "https",
+        "database": "",
+        "name": "influx_db_cloud",
+        "usetls": true,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "your-influxdb-cloud-url",
+        "timeout": "",
+        "rejectUnauthorized": true
+    }
+]
