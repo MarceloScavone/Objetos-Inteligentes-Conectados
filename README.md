@@ -1,4 +1,4 @@
-# PROJETO N2 
+# Projeto N2 
 Grupo: 05 //
 Integrantes: Marcelo Scavone Denardi Rodrigues (RA: 10223569), Gabriel Ferreira Carelli (RA: 10395905).
 
