@@ -95,7 +95,7 @@ Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando 
 ## Criar o Bot do Telegram
 
 1. No Telegram procurar por @BotFather.
-2. Inicie uma conversa com o BotFather e envie `/start`, e depois, `/newbot`.
+2. Inicie uma conversa com o BotFather enviando `/start`, e depois, `/newbot`.
 3. Após criado, o mesmo irá fornecer um Token, é necessário salvá-lo.
 
 ## Configurando o InfluxDB
