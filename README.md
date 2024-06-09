@@ -68,21 +68,21 @@ O WiFiManager é utilizado para configurar a conexão WiFi e parâmetros MQTT (b
 1. **Iniciar o WiFiManager**:
    - Após upload do código, no primeiro boot, ou se a conexão WiFi não puder ser estabelecida, o ESP32 cria um ponto de acesso (AP).
    - Conectar ao AP usando o celular, como se fosse entrar em um WiFi, porém o roteador se chamará `ESP32_AP`. 
-   - Será aberto uma  janela do navegador, este será o portal de configuração, caso não abrir automaticamente entrar no navegador e acessar esse IP: `192.168.4.1`. Se ainda assim não entrar verifique se os dados móveis estão desativados.
+   - Será aberto uma  janela do navegador, este será o portal de configuração, caso não abrir automaticamente entrar no navegador e acessar o IP: `192.168.4.1`. É necessário que os dados móveis do dispositivo esteja desativado.
 
 2. **Configurar WiFi e MQTT**:
    - Após se conectar ao AP, o navegador redireciona automaticamente para a página de configuração do WiFiManager.
-   - Selecionar a rede WiFi desejada, inserir a senha e preencha os campos personalizados para o broker MQTT, porta e tópico.
+   - Selecionar a rede WiFi desejada, inserir a senha e preencha os campos para o broker MQTT, porta e tópico.
    - Após salvar, o ESP32 irá reiniciar e tentar conectar-se à rede WiFi e ao broker MQTT com as configurações fornecidas.
 
-**Agora é necessário verificar se as informações estão chegando no tópico!**
+**Agora é necessário verificar se as informações estão chegando no tópico**
 
-OBS: Caso precise reiniciar a placa em modo AP basta sair da região do wifi e ligá-la ou colocar um objeto metálico entre o pino 19 e GND por 3 segundos.
+OBS: Para reiniciar a placa em modo AP basta sair da região do wifi e ligá-la ou colocar um objeto metálico entre o pino 19 e GND por 3 segundos.
 ___
 
 # Telegram Bot com Node-RED e InfluxDB
 
-Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando Node-RED para monitorar a temperatura corporal de idosos. O bot gerencia pessoas que irão receber as mensagens e armazenar dados em um banco de dados InfluxDB.
+Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando o Node-RED para monitorar a temperatura corporal de idosos. O bot gerencia pessoas que irão receber as mensagens e armazenar dados em um banco de dados InfluxDB.
 
 ## Pré-requisitos
 
@@ -94,9 +94,9 @@ Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando 
 
 ## Criar o Bot do Telegram
 
-1. No Telegram procure por @BotFather.
+1. No Telegram procurar por @BotFather.
 2. Inicie uma conversa com o BotFather e envie `/start`, e depois, `/newbot`.
-3. Após seguir as instruções para criar um novo bot, o mesmo irá fornecer um Token, é necessário salvá-lo.
+3. Após criado, o mesmo irá fornecer um Token, é necessário salvá-lo.
 
 ## Configurando o InfluxDB
 
@@ -114,7 +114,7 @@ Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando 
 node-red
 ```
 3. Abra o Node-RED em um navegador web acessando http://localhost:1880.
-5. Antes de importar o fluxo é importante instalar as seguintes dependências: `node-red-contrib-telegrambot` e `node-red-contrib-influxdb`. Para instalar os pacotes, vamos em menu no canto superior direito do Node-RED > "Manage palette", e instale ambos.
+5. Antes de importar o fluxo é importante instalar as seguintes dependências: `node-red-contrib-telegrambot` e `node-red-contrib-influxdb`. Para instalar os pacotes, ir para Menu > canto superior direito > Node-RED > "Manage palette", e instalar.
 4. No Node-RED, selecionando "Import", importar o arquivo JSON localizado em `nodered/telegrambot.json`.
 
 ### Configurações Importantes
