@@ -95,12 +95,13 @@ Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando 
 - [Node-RED (versão 3 ou superior)](https://nodered.org/docs/getting-started/local#installing-with-npm)
 - Conta no Telegram para criar o bot
 - Conta no InfluxDB Cloud
+- Conta no Grafana
 
 ## Criando o Bot do Telegram
 
-1. Abra o Telegram e procure por @BotFather.
+1. No Telegram procure por @BotFather.
 2. Inicie uma conversa com o BotFather e envie `/start` seguido de `/newbot`.
-3. Siga as instruções para criar um novo bot. Você receberá um token de API. Salve este token.
+3. Após seguir as instruções para criar um novo bot, você receberá um token de API. Salve este token.
 
 ## Configurando o InfluxDB
 
