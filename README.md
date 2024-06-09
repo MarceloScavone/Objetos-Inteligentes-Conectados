@@ -34,7 +34,7 @@ Essa sessão do projeto demonstra como configurar o ESP32 para monitorar a tempe
 
 1. **Adicionar Suporte à Placa ESP32 na Arduino IDE**:
    - No Arduino IDE em `Arquivo` > `Preferências`.
-   - Localizar o campo `URLs adicionais para Gerenciadores de Placas` e colocar a seguinte URL:
+   - No campo `URLs adicionais para Gerenciadores de Placas` colocar a seguinte URL:
      ```
      https://dl.espressif.com/dl/package_esp32_index.json
      ```
