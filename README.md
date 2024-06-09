@@ -196,11 +196,11 @@ ___
    - Insira a consulta Flux para buscar os dados desejados. Exemplo de consulta:
      ```flux
      from(bucket: "temperaturas")
-  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
-  |> filter(fn: (r) =>
-    r._measurement == "temperaturas" and
-    r._field == "temperatura"
-  )
+     |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
+     |> filter(fn: (r) =>
+       r._measurement == "temperaturas" and
+       r._field == "temperatura"
+     )
      ```
 
 5. **Salvando e abrindo quando necessário**
