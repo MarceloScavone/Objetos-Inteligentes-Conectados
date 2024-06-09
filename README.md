@@ -100,7 +100,7 @@ Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando 
 
 ## Configurando o InfluxDB
 
-1. Depois de criado a conta [InfluxDB Cloud](https://cloud2.influxdata.com/signup), criar um bucket no qual será armazenado os dados.
+1. Depois de criado a conta no [InfluxDB Cloud](https://cloud2.influxdata.com/signup), criar um bucket no qual será armazenado os dados.
 3. Gerar um token de autenticação com permissões para acessar e escrever no bucket.
 4. Anotar a URL do InfluxDB, o nome do bucket, o nome da organização e o token gerado.
 
