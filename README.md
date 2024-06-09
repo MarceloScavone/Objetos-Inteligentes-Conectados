@@ -5,7 +5,7 @@ Grupo: 05 - Marcelo Scavone Denardi Rodrigues (RA: 10223569), Gabriel Ferreira C
 
 # Descrição do Projeto
 Esse projeto foi desenvolvido através da disciplina de Objetos Inteligentes Conectados da Universidade Presbiteriana Mackenzie, sendo orientado pelo Prof. Wallace Santana, 2024.
-
+Este projeto apresenta um Termômetro Wi-Fi especificamente projetado para o público idoso, utilizando uma Placa de Desenvolvimento ESP32 com um Sensor de Temperatura DS18B20 e um resistor de 4.7kΩ como pullup. O dispositivo monitora continuamente a temperatura corporal e envia esses dados vitais diretamente aos cuidadores por meio de um bot no Telegram, o Veinho Bot. A placa ESP32 lê os dados do sensor de temperatura e envia mensagens via protocolo MQTT para um broker, o Node-RED atua como subscriber, processa as mensagens recebidas, aplica regras de negócio, armazena os dados no InfluxDB e envia alertas via Telegram se a temperatura estiver fora dos parâmetros normais, utilizando o Grafana, os dados são consumidos e analisados de forma eficiente em um dashboard, fazendo com que este projeto esteja alinhado com o ODS 3 da ONU, que visa assegurar uma vida saudável e promover o bem-estar para todos.
 
 # Monitoramento de Temperatura Corporal com ESP32 e DS18B20
 
