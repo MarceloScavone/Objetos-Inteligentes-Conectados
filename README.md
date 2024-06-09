@@ -193,7 +193,7 @@ ___
 
 3. **Configurar a Consulta Flux:**
    - No editor de consultas, selecione **Flux** como o tipo de consulta.
-   - Insira a consulta Flux para buscar os dados desejados. Exemplo de consulta:
+   - Inserir a consulta para buscar os dados desejados:
      ```flux
      from(bucket: "temperaturas")
      |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
