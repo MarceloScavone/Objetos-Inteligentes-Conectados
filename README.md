@@ -4,7 +4,7 @@
 Grupo: 05 - Marcelo Scavone Denardi Rodrigues (RA: 10223569), Gabriel Ferreira Carelli (RA: 10395905).
 
 # Descrição do Projeto
-Esse projeto foi desenvolvido através da disciplina de Objetos Inteligentes Conectados da Universidade Presbiteriana Mackenzie, sendo orientado pelo Prof. Wallace Santana.
+Esse projeto foi desenvolvido através da disciplina de Objetos Inteligentes Conectados da Universidade Presbiteriana Mackenzie, sendo orientado pelo Prof. Wallace Santana, 2024.
 
 
 # Monitoramento de Temperatura Corporal com ESP32 e DS18B20
