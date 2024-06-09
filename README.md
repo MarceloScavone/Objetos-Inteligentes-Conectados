@@ -67,7 +67,7 @@ O WiFiManager é utilizado para configurar a conexão WiFi e parâmetros MQTT (b
 
 1. **Iniciar o WiFiManager**:
    - Após upload do código, no primeiro boot, ou se a conexão WiFi não puder ser estabelecida, o ESP32 cria um ponto de acesso (AP).
-   - Conectar ao AP usando o celular, como se você fosse entrar em um WiFi, porém o roteador se chamará `ESP32_AP`. 
+   - Conectar ao AP usando o celular, como se fosse entrar em um WiFi, porém o roteador se chamará `ESP32_AP`. 
    - Será aberto uma  janela do navegador, este será o portal de configuração, caso não abrir automaticamente entrar no navegador e acessar esse IP: `192.168.4.1`. Se ainda assim não entrar verifique se os dados móveis estão desativados.
 
 2. **Configurar WiFi e MQTT**:
