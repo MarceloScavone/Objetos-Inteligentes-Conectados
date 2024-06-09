@@ -40,7 +40,7 @@ Essa sessão do projeto demonstra como configurar o ESP32 para monitorar a tempe
      ```
 2. **Instalar a Placa ESP32**:
    - Em `Ferramentas` > `Placa` > `Gerenciador de Placas` > Buscar por `esp32`.
-   - Selecione `esp32` da Espressif Systems e clique em `Instalar`.
+   - Selecionar `esp32` da Espressif Systems e `Instalar`.
 
 3. **Instalar as Bibliotecas Necessárias**:
    - Em `Sketch` > `Incluir Biblioteca` > `Gerenciar Bibliotecas`.
