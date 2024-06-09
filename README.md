@@ -1,6 +1,9 @@
 # Projeto N2 
 Grupo: 05 - Marcelo Scavone Denardi Rodrigues (RA: 10223569), Gabriel Ferreira Carelli (RA: 10395905).
 
+# Descrição do Projeto
+
+
 # Monitoramento de Temperatura Corporal com ESP32 e DS18B20
 
 Essa sessão do projeto demonstra como configurar um ESP32 para monitorar a temperatura corporal de idosos usando um sensor DS18B20 e enviar os dados de temperatura via MQTT para um broker (HiveMQ).
@@ -84,8 +87,8 @@ Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando 
 ## Pré-requisitos
 
 - [Git (última versão)](https://www.git-scm.com/download/win)
-- [Node.js (recomendado: versão 20 ou superior)](https://nodejs.org/en/download/prebuilt-installer)
-- [Node-RED (recomendado: versão 3 ou superior)](https://nodered.org/docs/getting-started/local#installing-with-npm)
+- [Node.js (versão 20 ou superior)](https://nodejs.org/en/download/prebuilt-installer)
+- [Node-RED (versão 3 ou superior)](https://nodered.org/docs/getting-started/local#installing-with-npm)
 - Conta no Telegram para criar o bot
 - Conta no InfluxDB Cloud
 
@@ -193,12 +196,12 @@ ___
    - No editor de consultas, selecione **Flux** como o tipo de consulta.
    - Insira a consulta Flux para buscar os dados desejados. Exemplo de consulta:
      ```flux
-     from(bucket: "nome_do_seu_bucket")
-       |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
-       |> filter(fn: (r) =>
-        r._measurement == "nome_da_sua_medida" and
-        r._field == "nome_do_seu_campo"
-       )
+     from(bucket: "temperaturas")
+  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
+  |> filter(fn: (r) =>
+    r._measurement == "temperaturas" and
+    r._field == "temperatura"
+  )
      ```
 
 4. **Outras configurações:**
