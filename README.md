@@ -53,13 +53,13 @@ Essa sessão do projeto demonstra como configurar o ESP32 para monitorar a tempe
 
 4. **Carregar o Código**:
    - O código fonte completo para o ESP32 está disponível na pasta `esp32/DS18B20MQTT` deste repositório.
-   - No Arduino IDE, carregue o código fonte (`esp32/DS18B20MQTT`).
-   - Conecte o ESP32 ao computador via cabo USB.
+   - No Arduino IDE, carregar o código fonte (`esp32/DS18B20MQTT`).
+   - Conectar o ESP32 ao computador via cabo USB.
    - Em `Ferramentas` > `Placa` > Selecionar a placa ESP32.
-   - Selecionar a porta correta em `Ferramentas` > `Porta`.
-   - Verifique se o `Partition Scheme` está em default with SPIFFS.
+   - Selecionar a porta em `Ferramentas` > `Porta`.
+   - Verificar se o `Partition Scheme` está em default with SPIFFS.
    - Fazer upload na Arduino IDE.
-   - Aguardar até que o upload esteja completo e o ESP32 reinicie.
+   - Esperar até que o upload esteja completo e o ESP32 reinicie.
 
 ### Configuração do WiFiManager
 
