@@ -1,6 +1,6 @@
 # Conectando Gerações: Termômetro Wifi para Saúde e Bem-Estar
 
-#Integrantes
+# Integrantes
 Grupo: 05 - Marcelo Scavone Denardi Rodrigues (RA: 10223569), Gabriel Ferreira Carelli (RA: 10395905).
 
 # Descrição do Projeto
