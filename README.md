@@ -10,7 +10,7 @@ Grupo 05 - Marcelo Scavone Denardi Rodrigues (RA: 10223569), Gabriel Ferreira Ca
 
 # Monitoramento de Temperatura Corporal com ESP32 e DS18B20
 
-Essa sessão do projeto demonstra como configurar o ESP32 para monitorar a temperatura corporal de idosos usando um sensor DS18B20 e enviar os dados de temperatura via MQTT para um broker (HiveMQ).
+Essa sessão do projeto demonstra como configurar o ESP32 para monitorar a temperatura corporal de idosos usando um sensor DS18B20 e enviar os dados de temperatura via MQTT para um broker (broker.mqtt.cool).
 
 ## Requisitos
 
