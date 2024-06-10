@@ -1,5 +1,6 @@
 # Conectando Gerações: Termômetro Wifi para Saúde e Bem-Estar
-   Este projeto foi desenvolvido para disciplina de Objetos Inteligentes Conectados da Universidade Presbiteriana Mackenzie, sendo orientado pelo Prof. Wallace Rodrigues de Santana, Turma 05J11 - 2024.
+- Este projeto foi desenvolvido para disciplina de Objetos Inteligentes Conectados da Universidade Presbiteriana Mackenzie, sendo orientado pelo Prof. Wallace Rodrigues de Santana, Turma 05J11 - 2024.
+- O vídeo de demonstração do protótipo pode ser encontrado neste LINK
 
 # Integrantes
 Grupo 05 - Marcelo Scavone Denardi Rodrigues (RA: 10223569), Gabriel Ferreira Carelli (RA: 10395905).
