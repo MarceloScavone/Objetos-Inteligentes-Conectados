@@ -1,6 +1,17 @@
+# Conectando Gerações: Termômetro Wifi para Saúde e Bem-Estar
+- Este projeto foi desenvolvido para disciplina de Objetos Inteligentes Conectados da Universidade Presbiteriana Mackenzie, sendo orientado pelo Prof. Wallace Santana, Turma 05J11 - 2024.
+- O vídeo de demonstração do protótipo pode ser encontrado no link: https://youtu.be/gvJIlJetfms
+
+# Integrantes
+Grupo 05 - Marcelo Scavone Denardi Rodrigues (RA: 10223569), Gabriel Ferreira Carelli (RA: 10395905).
+
+# Descrição do Projeto
+
+   Simulamos um Termômetro Wi-Fi especificamente projetado para o público idoso, utilizando uma Placa de Desenvolvimento ESP32 com um Sensor de Temperatura DS18B20 e um resistor de 4.7kΩ como pullup, o dispositivo monitora continuamente a temperatura corporal e envia esses dados vitais diretamente aos cuidadores por meio de um bot no Telegram, o Veinho Bot. A placa ESP32 lê os dados do sensor de temperatura e envia mensagens via protocolo MQTT para um broker, o Node-RED atua como subscriber, processa as mensagens recebidas, aplica regras de negócio, armazena os dados no InfluxDB e envia alertas via Telegram se a temperatura estiver fora dos parâmetros normais. Utilizando o Grafana, os dados são consumidos e analisados de forma eficiente em um dashboard, logo, este projeto está alinhado com a ODS 3 da ONU, que visa assegurar uma vida saudável e promover o bem-estar para todos.
+
 # Monitoramento de Temperatura Corporal com ESP32 e DS18B20
 
-Essa sessão do projeto demonstra como configurar um ESP32 para monitorar a temperatura corporal de idosos usando um sensor DS18B20 e enviar os dados de temperatura via MQTT para um broker (HiveMQ).
+Essa sessão do projeto demonstra como configurar o ESP32 para monitorar a temperatura corporal de idosos usando um sensor DS18B20 e enviar os dados de temperatura via MQTT para um broker (broker.mqtt.cool).
 
 ## Requisitos
 
@@ -23,23 +34,18 @@ Essa sessão do projeto demonstra como configurar um ESP32 para monitorar a temp
 ### Configuração do ESP32
 
 1. **Adicionar Suporte à Placa ESP32 na Arduino IDE**:
-   - Abra a Arduino IDE.
-   - Vá em `Arquivo` > `Preferências`.
-   - Na caixa de diálogo que se abre, localize o campo `URLs adicionais para Gerenciadores de Placas` e adicione a seguinte URL:
+   - No Arduino IDE em `Arquivo` > `Preferências`.
+   - No campo `URLs adicionais para Gerenciadores de Placas` colocar a seguinte URL:
      ```
      https://dl.espressif.com/dl/package_esp32_index.json
      ```
-   - Clique em `OK` para fechar a caixa de diálogo.
-
 2. **Instalar a Placa ESP32**:
-   - Vá em `Ferramentas` > `Placa` > `Gerenciador de Placas`.
-   - Na caixa de busca, digite `esp32`.
-   - Selecione `esp32` da Espressif Systems e clique em `Instalar`.
-   - Após a instalação, feche o Gerenciador de Placas.
+   - Em `Ferramentas` > `Placa` > `Gerenciador de Placas` > Buscar por `esp32`.
+   - Selecionar `esp32` da Espressif Systems e `Instalar`.
 
 3. **Instalar as Bibliotecas Necessárias**:
-   - Vá em `Sketch` > `Incluir Biblioteca` > `Gerenciar Bibliotecas`.
-   - Instale as seguintes bibliotecas:
+   - Em `Sketch` > `Incluir Biblioteca` > `Gerenciar Bibliotecas`.
+   - Necessário instalar as seguintes:
      - `OneWire` (autor: Jim Studt et al)
      - `DallasTemperature` (autor: Miles Burton et al)
      - `PubSubClient` (autor: Nick O'Leary)
@@ -47,14 +53,14 @@ Essa sessão do projeto demonstra como configurar um ESP32 para monitorar a temp
      - `ArduinoJson` (autor: Benoit Blanchon)
 
 4. **Carregar o Código**:
-   - O código fonte completo para o ESP32 está disponível na pasta `esp32/esp32ds20b18` deste repositório.
-   - Abra o Arduino IDE e carregue o código fonte (`esp32/esp32ds20b18`).
-   - Conecte o ESP32 ao computador via cabo USB.
-   - Vá em `Ferramentas` > `Placa` e selecione a placa ESP32 que você está usando (por exemplo, `ESP32 Dev Module`).
-   - Certifique-se de selecionar a porta correta em `Ferramentas` > `Porta`. Se não souber qual é a porta tente retirar do USB e abrir o menu novamente para ver qual porta sumiu ou conecte novamente e veja qual porta nova apareceu.
-   - Ajuste outras configurações normalmente estão feitas corretamente, mas verifique se o `Partition Scheme` está no default with SPIFFS, pois usaremos o sistema de arquivos nesse projeto.
-   - Clique no botão de upload (seta para a direita) na Arduino IDE.
-   - Aguarde até que o upload esteja completo e o ESP32 reinicie.
+   - O código fonte completo para o ESP32 está disponível na pasta `esp32/DS18B20MQTT` deste repositório.
+   - No Arduino IDE, carregar o código fonte (`esp32/DS18B20MQTT`).
+   - Conectar o ESP32 ao computador via cabo USB.
+   - Em `Ferramentas` > `Placa` > Selecionar a placa ESP32.
+   - Selecionar a porta em `Ferramentas` > `Porta`.
+   - Verificar se o `Partition Scheme` está em default with SPIFFS.
+   - Fazer upload na Arduino IDE.
+   - Esperar até que o upload esteja completo e o ESP32 reinicie.
 
 ### Configuração do WiFiManager
 
@@ -62,42 +68,41 @@ O WiFiManager é utilizado para configurar a conexão WiFi e parâmetros MQTT (b
 
 1. **Iniciar o WiFiManager**:
    - Após upload do código, no primeiro boot, ou se a conexão WiFi não puder ser estabelecida, o ESP32 cria um ponto de acesso (AP).
-   - Conecte-se ao AP usando um dispositivo (computador, celular) como se você fosse entrar em um WiFi, porém o roteador se chamará `ESP32_AP`. Uma janela do navegador será aberta com um portal de configuração. Caso não se abra automaticamente entre num navegador e acesse esse IP: `192.168.4.1`. Se ainda assim não entrar verifique se os seus dados móveis estão desativados.
+   - Conectar ao AP usando o celular, como se fosse entrar em um WiFi, porém o roteador se chamará `ESP32_AP`. 
+   - Será aberto uma  janela do navegador, este será o portal de configuração, caso não abrir automaticamente entrar no navegador e acessar o IP: `192.168.4.1`. É necessário que os dados móveis do dispositivo esteja desativado.
 
 2. **Configurar WiFi e MQTT**:
    - Após se conectar ao AP, o navegador redireciona automaticamente para a página de configuração do WiFiManager.
-   - Selecione a rede WiFi desejada, insira a senha e preencha os campos personalizados para o broker MQTT, porta e tópico.
-   - Salve as configurações. O ESP32 reiniciará e tentará se conectar à rede WiFi e ao broker MQTT com as configurações fornecidas.
+   - Selecionar a rede WiFi desejada, inserir a senha e preencha os campos para o broker MQTT, porta e tópico.
+   - Após salvar, o ESP32 irá reiniciar e tentar conectar-se à rede WiFi e ao broker MQTT com as configurações fornecidas.
 
-**Agora é só verificar se as informações estão chegando no tópico com a próxima parte do projeto!**
+**Agora é necessário verificar se as informações estão chegando no tópico**
 
-OBS: Caso precise reiniciar a placa em modo AP basta sair da região do wifi e ligá-la ou colocar um objeto metálico entre o pino 19 e GND por 3 segundos.
+OBS: Para reiniciar a placa em modo AP basta sair da região do wifi e ligá-la ou colocar um objeto metálico entre o pino 19 e GND por 3 segundos.
 ___
 
 # Telegram Bot com Node-RED e InfluxDB
 
-Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando Node-RED para monitorar a temperatura corporal de idosos. O bot gerencia pessoas que irão receber as mensagens e armazenar dados em um banco de dados InfluxDB.
+Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando o Node-RED para monitorar a temperatura corporal de idosos. O bot gerencia pessoas que irão receber as mensagens e armazenar dados em um banco de dados InfluxDB.
 
 ## Pré-requisitos
 
 - [Git (última versão)](https://www.git-scm.com/download/win)
-- [Node.js (recomendado: versão 20 ou superior)](https://nodejs.org/en/download/prebuilt-installer)
-- [Node-RED (recomendado: versão 3 ou superior)](https://nodered.org/docs/getting-started/local#installing-with-npm)
+- [Node.js (versão 20 ou superior)](https://nodejs.org/en/download/prebuilt-installer)
+- [Node-RED (versão 3 ou superior)](https://nodered.org/docs/getting-started/local#installing-with-npm)
 - Conta no Telegram para criar o bot
 - Conta no InfluxDB Cloud
 
-## Criando o Bot do Telegram
+## Criar o Bot do Telegram
 
-1. Abra o Telegram e procure por @BotFather.
-2. Inicie uma conversa com o BotFather e envie `/start` seguido de `/newbot`.
-3. Siga as instruções para criar um novo bot. Você receberá um token de API. Salve este token.
+1. No Telegram procurar por @BotFather e iniciar uma conversa enviando `/start`, e depois, `/newbot`.
+3. Após criado, o mesmo irá fornecer um Token, é necessário salvá-lo.
 
 ## Configurando o InfluxDB
 
-1. Crie uma conta no [InfluxDB Cloud](https://cloud2.influxdata.com/signup).
-2. Crie um bucket onde você armazenará os dados.
-3. Gere um token de autenticação com permissões para acessar e escrever no bucket.
-4. Anote a URL do InfluxDB, o nome do bucket, o nome da organização e o token gerado.
+1. Depois de criado a conta no [InfluxDB Cloud](https://cloud2.influxdata.com/signup), criar um bucket no qual será armazenado os dados.
+3. Gerar um token de autenticação com permissões para acessar e escrever no bucket.
+4. Anotar a URL do InfluxDB, o nome do bucket, o nome da organização e o token gerado.
 
 ## Configurando o Node-RED
 
@@ -109,28 +114,28 @@ Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando 
 node-red
 ```
 3. Abra o Node-RED em um navegador web acessando http://localhost:1880.
-5. Antes de importar o fluxo é importante você instalar as seguintes dependências: `node-red-contrib-telegrambot` e `node-red-contrib-influxdb`. Para instalar esses pacotes, vá para o menu no canto superior direito do Node-RED, selecione "Manage palette", e instale cada um deles.
-4. No Node-RED, clique no menu no canto superior direito, selecione "Import", e importe o arquivo JSON localizado em `nodered/telegrambot.json` do repositório clonado.
+5. Antes de importar o fluxo é importante instalar as seguintes dependências: `node-red-contrib-telegrambot` e `node-red-contrib-influxdb`. Para instalar os pacotes, ir em Menu > canto superior direito > Node-RED > "Manage palette", e instalar.
+4. No Node-RED, em "Import", importar o arquivo JSON localizado em `nodered/telegrambot.json`.
 
 ### Configurações Importantes
-1. Substitua your-influxdb-cloud-url (exemplo: https://us-east-1-1.aws.cloud2.influxdata.com), your-org, your-bucket e your-influxdb-token pelas informações do seu InfluxDB Cloud.
-2. Configure o nó telegram bot com o nome e o token do seu bot do Telegram.
-3. Substitua no nó mqtt in o your/topic com o tópico MQTT onde as temperaturas serão publicadas.
+1. Necessário substituir your-influxdb-cloud-url (exemplo: https://us-east-1-1.aws.cloud2.influxdata.com), your-org, your-bucket e your-influxdb-token pelas informações do InfluxDB Cloud.
+2. Configurar o nó telegram bot com o nome e o token do seu bot do Telegram.
+3. Substituir no nó mqtt com o tópico MQTT onde as temperaturas serão publicadas.
 
 ## Regra de negócio das Mensagens de Temperatura
-O fluxo MQTT receberá a temperatura corporal e a função `Processar a temperatura` verificará se a temperatura está acima de 37.5 ou abaixo de 35.5, enviando notificações para os chat IDs registrados pelo comando `/cadastrar` no bot. Caso queira altera a regra, modifique esse nó.
+O fluxo MQTT receberá a temperatura corporal e a função `Processar a temperatura` verificará se a temperatura está acima de 37.5 ou abaixo de 35.5, enviando notificações para os chat IDs registrados pelo comando `/cadastrar` no bot.
 
 ## Usando os Comandos do Bot do Telegram
 
-Após configurar e iniciar o bot do Telegram, você pode interagir com ele usando os seguintes comandos:
+Após configurar e iniciar o bot do Telegram, é possível interagir com ele usando os seguintes comandos:
 
 ### /cadastrar
 
 Comando para se cadastrar e receber notificações de temperatura.
 
 **Uso:**
-1. Abra o Telegram e inicie uma conversa com o bot.
-2. Envie o comando `/cadastrar`.
+1. Abrir o Telegram e inicie uma conversa com o bot.
+2. Enviar o comando `/cadastrar`.
 
 **Resposta:**
 - Se o chat ID não estiver cadastrado, você receberá a mensagem: "Você foi cadastrado com sucesso!"
@@ -141,8 +146,8 @@ Comando para se cadastrar e receber notificações de temperatura.
 Comando para se descadastrar e parar de receber notificações de temperatura.
 
 **Uso:**
-1. Abra o Telegram e inicie uma conversa com o bot.
-2. Envie o comando `/descadastrar`.
+1. Abrir o Telegram e inicie uma conversa com o bot.
+2. Enviar o comando `/descadastrar`.
 
 **Resposta:**
 - Se o chat ID estiver cadastrado, você receberá a mensagem: "Você foi descadastrado com sucesso!"
@@ -150,11 +155,11 @@ Comando para se descadastrar e parar de receber notificações de temperatura.
 
 ### /temperatura
 
-Comando para verificar a última temperatura lida.
+O comando irá verificar a última temperatura lida.
 
 **Uso:**
-1. Abra o Telegram e inicie uma conversa com o bot.
-2. Envie o comando `/temperatura`.
+1. Abrir o Telegram e inicie uma conversa com o bot.
+2. Enviar o comando `/temperatura`.
 
 **Resposta:**
 - Se o chat ID estiver cadastrado, e existir uma última temperatura lida você receberá a mensagem: "A última temperatura lida foi de: [valor]"
@@ -163,7 +168,7 @@ Comando para verificar a última temperatura lida.
 
 ## Notificações de Temperatura
 
-O bot enviará notificações automáticas para os usuários cadastrados com base nas leituras de temperatura recebidas via MQTT.
+O bot enviará notificações automáticas para os usuários cadastrados a cada 1 minuto com base nas leituras de temperatura recebidas via MQTT.
 
 **Condições:**
 - Se a temperatura estiver acima de 37.5°C, o bot enviará a mensagem: "Atenção! A temperatura está elevada: [valor]"
@@ -174,32 +179,29 @@ ___
 # Configurando o Grafana
 
 1. **Adicionar a Fonte de Dados do InfluxDB:**
-   - Faça login no Grafana e vá para **Configuration** > **Data Sources**.
-   - Clique em **Add data source** e selecione **InfluxDB**.
-   - Configure a fonte de dados com as seguintes informações:
-     - **URL:** `https://us-west-2-1.aws.cloud2.influxdata.com` (ou outra URL do seu InfluxDB Cloud)
-     - **Organization:** Seu nome de organização no InfluxDB Cloud
-     - **Token:** Crie um token para o grafana assim como fez como o nodered e cole aqui
-     - **Default Bucket:** O nome do bucket que você criou
+   - Depois de fazer login no Grafana, em **Configuration** > **Data Sources**.
+   - Clicar em **Add data source** e selecionar **InfluxDB**.
+   - Configurar a fonte de dados com as seguintes informações:
+     - **URL:** `https://us-west-2-1.aws.cloud2.influxdata.com` (ou outra URL do seu InfluxDB Cloud).
+     - **Organization:** Nome da organização no InfluxDB Cloud.
+     - **Token:** Criar um token para o Grafana assim como feito com o nodered.
+     - **Default Bucket:** Nome do bucket criado.
 
 2. **Criar um Novo Painel:**
    - No Grafana, vá para o dashboard onde deseja adicionar a tabela.
-   - Clique em **Add panel** e selecione **Table**.
+   - Em **Add panel** > **Table**.
 
 3. **Configurar a Consulta Flux:**
    - No editor de consultas, selecione **Flux** como o tipo de consulta.
-   - Insira a consulta Flux para buscar os dados desejados. Exemplo de consulta:
+   - Inserir a consulta para buscar os dados desejados:
      ```flux
-     from(bucket: "nome_do_seu_bucket")
-       |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
-       |> filter(fn: (r) =>
-        r._measurement == "nome_da_sua_medida" and
-        r._field == "nome_do_seu_campo"
-       )
+     from(bucket: "temperaturas")
+     |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
+     |> filter(fn: (r) =>
+       r._measurement == "temperaturas" and
+       r._field == "temperatura"
+     )
      ```
-
-4. **Outras configurações:**
-   - Ajuste formatação do gráfico e nome do dashboard conforme necessário.
 
 5. **Salvando e abrindo quando necessário**
    -  Após todos ajustes basta você clicar em salvar. E após isso basta entrar dentro dos seus dashboards do Grafana e seu dashboard estará lá para uso.
