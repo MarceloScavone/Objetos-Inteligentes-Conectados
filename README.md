@@ -190,7 +190,7 @@ ___
    - Em **Add panel** > **Table**.
 
 3. **Configurar a Consulta Flux:**
-   - No editor de consultas, selecione **Flux** como o tipo de consulta.
+   - No editor de consultas, selecionar **Flux** como o tipo de consulta.
    - Inserir a consulta para buscar os dados desejados:
      ```flux
      from(bucket: "temperaturas")
