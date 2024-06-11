@@ -183,10 +183,10 @@ ___
    - Depois de fazer login no Grafana, em **Configuration** > **Data Sources**.
    - Clicar em **Add data source** e selecionar **InfluxDB**.
    - Configurar a fonte de dados com as seguintes informações:
-     - **URL:** `https://us-west-2-1.aws.cloud2.influxdata.com` (ou outra URL do seu InfluxDB Cloud).
-     - **Organization:** Nome da organização no InfluxDB Cloud.
+     - **URL:** `https://us-west-2-1.aws.cloud2.influxdata.com`.
+     - **Organization:** Nome da organização (Scavone) no InfluxDB Cloud.
      - **Token:** Criar um token para o Grafana assim como feito com o nodered.
-     - **Default Bucket:** Nome do bucket criado.
+     - **Default Bucket:** Nome do bucket criado (temperaturas).
 
 2. **Criar um Novo Painel:**
    - No Grafana, vá para o dashboard onde deseja adicionar a tabela.
