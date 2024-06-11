@@ -114,7 +114,8 @@ Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando 
 node-red
 ```
 3. Abra o Node-RED em um navegador web acessando http://localhost:1880.
-5. Antes de importar o fluxo é importante instalar as seguintes dependências: `node-red-contrib-telegrambot` e `node-red-contrib-influxdb`. Para instalar os pacotes, ir em Menu > canto superior direito > Node-RED > "Manage palette", e instalar.
+5. Antes de importar o fluxo é importante instalar as seguintes dependências: `node-red-contrib-telegrambot` e `node-red-contrib-influxdb`. 
+4. Para instalar os pacotes, ir em Menu > canto superior direito > Node-RED > "Manage palette", e instalar.
 4. No Node-RED, em "Import", importar o arquivo JSON localizado em `nodered/telegrambot.json`.
 
 ### Configurações Importantes
