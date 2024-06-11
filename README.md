@@ -64,7 +64,7 @@ Essa sessão do projeto demonstra como configurar o ESP32 para monitorar a tempe
 
 ### Configuração do WiFiManager
 
-O WiFiManager é utilizado para configurar a conexão WiFi e parâmetros MQTT como broker(broker.mqtt.cool), porta(1883) e tópico(sensores/temperatura_corporal) de forma fácil e dinâmica, sem a necessidade de reprogramar o ESP32.
+O WiFiManager é utilizado para configurar a conexão WiFi e parâmetros MQTT como broker (broker.mqtt.cool), porta (1883) e tópico (sensores/temperatura_corporal) de forma fácil e dinâmica, sem a necessidade de reprogramar o ESP32.
 
 1. **Iniciar o WiFiManager**:
    - Após upload do código, no primeiro boot, ou se a conexão WiFi não puder ser estabelecida, o ESP32 cria um ponto de acesso (AP).
