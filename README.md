@@ -186,7 +186,7 @@ ___
      - **Default Bucket:** Nome do bucket criado (temperaturas).
 
 2. **Criar um Novo Painel:**
-   - No Grafana, ir para o dashboard onde deseja adicionar a tabela.
+   - No Grafana, ir para o dashboard e adicionar a tabela.
    - Em **Add panel** > **Table**.
 
 3. **Configurar a Consulta Flux:**
