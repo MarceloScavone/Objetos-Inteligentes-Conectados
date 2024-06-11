@@ -135,8 +135,7 @@ Após configurar e iniciar o bot do Telegram, é possível interagir com ele usa
 Comando para se cadastrar e receber notificações de temperatura.
 
 **Uso:**
-1. Abrir o Telegram e iniciar uma conversa com o bot.
-2. Enviar o comando `/cadastrar`.
+1. Abrir o Telegram e iniciar uma conversa com o bot enviando o comando `/cadastrar`.
 
 **Resposta:**
 - Se o chat ID não estiver cadastrado, você receberá a mensagem: "Você foi cadastrado com sucesso!"
@@ -147,8 +146,7 @@ Comando para se cadastrar e receber notificações de temperatura.
 Comando para se descadastrar e parar de receber notificações de temperatura.
 
 **Uso:**
-1. Abrir o Telegram e iniciar uma conversa com o bot.
-2. Enviar o comando `/descadastrar`.
+1. Abrir o Telegram e iniciar uma conversa com o bot enviando o comando `/descadastrar`
 
 **Resposta:**
 - Se o chat ID estiver cadastrado, você receberá a mensagem: "Você foi descadastrado com sucesso!"
@@ -159,8 +157,7 @@ Comando para se descadastrar e parar de receber notificações de temperatura.
 O comando irá verificar a última temperatura lida.
 
 **Uso:**
-1. Abrir o Telegram e inicie uma conversa com o bot.
-2. Enviar o comando `/temperatura`.
+1. Abrir o Telegram e iniciar uma conversa com o bot enviando o comando `/temperatura`.
 
 **Resposta:**
 - Se o chat ID estiver cadastrado, e existir uma última temperatura lida você receberá a mensagem: "A última temperatura lida foi de: [valor]"
