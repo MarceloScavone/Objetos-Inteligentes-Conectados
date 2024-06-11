@@ -182,7 +182,7 @@ ___
    - Configurar a fonte de dados com as seguintes informações:
      - **URL:** `https://us-west-2-1.aws.cloud2.influxdata.com`.
      - **Organization:** Nome da organização (Scavone) no InfluxDB Cloud.
-     - **Token:** Criar um token para o Grafana assim como feito com o nodered.
+     - **Token:** Criar um token para o Grafana assim como feito no nodered.
      - **Default Bucket:** Nome do bucket criado (temperaturas).
 
 2. **Criar um Novo Painel:**
