@@ -100,15 +100,15 @@ Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando 
 
 ## Configurando o InfluxDB
 
-1. Depois de criado a conta no [InfluxDB Cloud](https://cloud2.influxdata.com/signup), criar um bucket no qual será armazenado os dados.
+1. Depois de criado a conta no [InfluxDB Cloud](https://cloud2.influxdata.com/signup), criar um bucket (temperaturas) no qual será armazenado os dados.
 3. Gerar um token de autenticação com permissões para acessar e escrever no bucket.
-4. Anotar a URL do InfluxDB, o nome do bucket, o nome da organização e o token gerado.
+4. Anotar a URL do InfluxDB, nome do bucket (temperaturas), nome da organização (Scavone) e o token gerado.
 
 ## Configurando o Node-RED
 
 ### Importando o Fluxo
 
-1. Clone o repositório do GitHub:
+1. Clonar o repositório do GitHub:
 2. Dentro do próprio Git abra o node-red digitando o comando para rodar o Node-RED:
 ```sh
 node-red
