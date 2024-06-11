@@ -135,7 +135,7 @@ Após configurar e iniciar o bot do Telegram, é possível interagir com ele usa
 Comando para se cadastrar e receber notificações de temperatura.
 
 **Uso:**
-1. Abrir o Telegram e inicie uma conversa com o bot.
+1. Abrir o Telegram e iniciar uma conversa com o bot.
 2. Enviar o comando `/cadastrar`.
 
 **Resposta:**
@@ -147,7 +147,7 @@ Comando para se cadastrar e receber notificações de temperatura.
 Comando para se descadastrar e parar de receber notificações de temperatura.
 
 **Uso:**
-1. Abrir o Telegram e inicie uma conversa com o bot.
+1. Abrir o Telegram e iniciar uma conversa com o bot.
 2. Enviar o comando `/descadastrar`.
 
 **Resposta:**
