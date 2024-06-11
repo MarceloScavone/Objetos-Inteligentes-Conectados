@@ -109,11 +109,11 @@ Essa sessão do projeto demonstra como configurar um bot do Telegram utilizando 
 ### Importando o Fluxo
 
 1. Clonar o repositório do GitHub:
-2. Dentro do próprio Git abra o node-red digitando o comando para rodar o Node-RED:
+2. Dentro do próprio Git abrir o node-red e digitar o comando:
 ```sh
 node-red
 ```
-3. Abra o Node-RED em um navegador web acessando http://localhost:1880.
+3. Abrir o Node-RED em um navegador web acessando http://localhost:1880.
 5. Antes de importar o fluxo é importante instalar as seguintes dependências: `node-red-contrib-telegrambot` e `node-red-contrib-influxdb`. 
 4. Para instalar os pacotes, ir em Menu > canto superior direito > Node-RED > "Manage palette", e instalar.
 4. No Node-RED, em "Import", importar o arquivo JSON localizado na pasta `nodered/telegrambot.json` deste repositório.
