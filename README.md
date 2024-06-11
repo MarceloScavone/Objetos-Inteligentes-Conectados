@@ -120,8 +120,8 @@ node-red
 
 ### Configurações Importantes
 1. Necessário substituir your-influxdb-cloud-url (exemplo: https://us-east-1-1.aws.cloud2.influxdata.com), your-org, your-bucket e your-influxdb-token pelas informações do InfluxDB Cloud.
-2. Configurar o nó telegram bot com o nome e o token do seu bot do Telegram (Veinho Bot).
-3. Substituir no nó mqtt com o tópico MQTT onde as temperaturas serão publicadas (broker.mqtt.cool).
+2. Configurar o nó telegram bot com o nome (Veinho Bot) e o token do seu bot do Telegram.
+3. Substituir no nó mqtt com o tópico MQTT (broker.mqtt.cool) onde as temperaturas serão publicadas.
 
 ## Regra de negócio das Mensagens de Temperatura
 O fluxo MQTT receberá a temperatura corporal e a função `Processar a temperatura` verificará se a temperatura está acima de 37.5 ou abaixo de 35.5, enviando notificações para os chat IDs registrados pelo comando `/cadastrar` no bot.
